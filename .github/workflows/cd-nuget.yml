@@ -1,0 +1,11 @@
+on: { push: { tags: ["v[0-9]+.[0-9]+.[0-9]+*"] } }
+    
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
+      - run: sed -i 's#../../images/#https://raw.githubusercontent.com/podNET-Hungary/PodNet.EnumValues/main/images/#g' README.md
+      - run: dotnet pack -c:Release -p:Version=$(echo ${{ github.ref_name }} | sed 's/^v//') -p:RepositoryCommit=${{ github.sha }}
+      - run: dotnet nuget push ./artifacts/package/release/PodNet.EnumValues.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json

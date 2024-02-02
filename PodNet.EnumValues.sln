@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AFFB6E1C-3016-4F1B-9039-0C466D83E80C}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.github\workflows\cd-nuget.yml = .github\workflows\cd-nuget.yml
+		Directory.Build.props = Directory.Build.props
+		global.json = global.json
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AC7890DF-E204-40B2-8596-38D6C21F894B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PodNet.EnumValues", "src\EnumValues\PodNet.EnumValues.csproj", "{AA96D3AB-CF48-423E-8071-D8A192854905}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PodNet.EnumValues.Core", "src\EnumValues.Core\PodNet.EnumValues.Core.csproj", "{D1818EF8-91B5-4491-954F-452371EE2288}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA96D3AB-CF48-423E-8071-D8A192854905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA96D3AB-CF48-423E-8071-D8A192854905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA96D3AB-CF48-423E-8071-D8A192854905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA96D3AB-CF48-423E-8071-D8A192854905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1818EF8-91B5-4491-954F-452371EE2288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1818EF8-91B5-4491-954F-452371EE2288}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1818EF8-91B5-4491-954F-452371EE2288}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1818EF8-91B5-4491-954F-452371EE2288}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AA96D3AB-CF48-423E-8071-D8A192854905} = {AC7890DF-E204-40B2-8596-38D6C21F894B}
+		{D1818EF8-91B5-4491-954F-452371EE2288} = {AC7890DF-E204-40B2-8596-38D6C21F894B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BE58993-E292-4F69-B4E8-C2BB1E1C7923}
+	EndGlobalSection
+EndGlobal
