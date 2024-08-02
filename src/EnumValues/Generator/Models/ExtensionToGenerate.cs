@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
-using PodNet.EnumValues.CodeAnalysis;
-using PodNet.EnumValues.Equality;
-using PodNet.EnumValues.Text;
+using PodNet.Analyzers;
+using PodNet.Analyzers.CodeAnalysis;
+using PodNet.Analyzers.Equality;
 using System.Collections.Immutable;
 
 namespace PodNet.EnumValues.Generator.Models;
@@ -25,22 +25,22 @@ public sealed record ExtensionToGenerate(
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        var missingValueHandling = args.GetValueOrDefault<MissingValueHandling>(nameof(V.MissingValueHandling));
-        var methodName = args.GetValueOrDefault(nameof(V.MethodName), $"Get{CodeText.TrimAttributeName(valueMarkerAttributeType.Name)}");
-        var isFlags = args.GetValueOrDefault(nameof(V.IsFlags), enumInfo.HasFlagsAttribute);
+        var missingValueHandling = args.GetValue<MissingValueHandling>(nameof(V.MissingValueHandling));
+        var methodName = args.GetValue<string?>(nameof(V.MethodName)) ?? $"Get{TextProcessing.TrimAttributeSuffix(valueMarkerAttributeType.Name)}";
+        var isFlags = args.GetValue<bool?>(nameof(V.IsFlags)) ?? enumInfo.HasFlagsAttribute;
 
         return new ExtensionToGenerate(
             EnumInfo: enumInfo,
             ValueMarkerAttributeTypeName: valueMarkerAttributeType.Name,
-            Namespace: args.GetValueOrDefault(nameof(V.Namespace), enumInfo.Namespace),
-            Accessibility: args.GetValueOrDefault(nameof(V.Accessibility), (Accessibility)enumInfo.DeclaredAccessibility),
-            ClassName: args.GetValueOrDefault(nameof(V.ClassName), $"{enumInfo.Identifier.Replace('.', '_')}ValueExtensions"),
+            Namespace: args.GetValue<string?>(nameof(V.Namespace)) ?? enumInfo.Namespace,
+            Accessibility: args.GetValue<Accessibility?>(nameof(V.Accessibility)) ?? (Accessibility)enumInfo.DeclaredAccessibility,
+            ClassName: args.GetValue<string?>(nameof(V.ClassName)) ?? $"{enumInfo.Identifier.Replace('.', '_')}ValueExtensions",
             MethodName: methodName,
             ValueCases: EnumValueCase.CreateMany(enumType, missingValueHandling, valueMarkerAttributeType, isFlags, diagnosticContainer),
             MissingValueHandling: missingValueHandling,
-            UndefinedValueHandling: args.GetValueOrDefault<UndefinedValueHandling>(nameof(V.UndefinedValueHandling)),
+            UndefinedValueHandling: args.GetValue<UndefinedValueHandling>(nameof(V.UndefinedValueHandling)),
             IsFlags: isFlags,
-            FlagsSeparator: args.GetValueOrDefault(nameof(V.FlagsSeparator), " | ")
+            FlagsSeparator: args.GetValue<string?>(nameof(V.FlagsSeparator)) ?? " | "
         );
     }
 

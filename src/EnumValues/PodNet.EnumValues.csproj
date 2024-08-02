@@ -2,51 +2,22 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<IsRoslynComponent>true</IsRoslynComponent>
-		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-		<!-- Version is set via Git tagging triggering the build and supplying that tag to `dotnet pack -p:Version`. -->
-		<Version Condition="'$(Version)' == '' And '$(Configuration)' == 'Debug'">0.0.0-debug</Version>
-
-		<IsPackable>true</IsPackable>
-		<IncludeSymbols>false</IncludeSymbols>
-		<IncludeBuildOutput>false</IncludeBuildOutput>
-
 		<PackageId>PodNet.EnumValues</PackageId>
-		<Product>PodNet.EnumValues</Product>
-		<PackageVersion>$(Version)</PackageVersion>
-		<Authors>podNET Hungary, Gábor Szabó</Authors>
-		<Company>podNET Hungary</Company>
-		<Copyright>Copyright (c) 2024 podNET Hungary</Copyright>
 		<Description>Generate fast constant string lookups for enum values. An efficient, easy-to-use C# source generator.</Description>
-		<PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
-		<PackageIcon>icon.png</PackageIcon>
-		<PackageReadMeFile>README.md</PackageReadMeFile>
-		<RepositoryUrl>https://github.com/podNET-Hungary/PodNet.EnumValues</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
 		<PackageTags>EnumValues, PodNet, generator, enum, enums, lookups, flags, binary, bit, bits, awesome</PackageTags>
-		<PackageReleaseNotes>https://github.com/podNET-Hungary/PodNet.EnumValues/releases</PackageReleaseNotes>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PodNetIncludeLibPlaceholder>false</PodNetIncludeLibPlaceholder>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
-		<InternalsVisibleTo Include="PodNet.EnumValues.Tests"/>
-		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" PrivateAssets="all" />
+		<InternalsVisibleTo Include="PodNet.EnumValues.Tests" />
+		
+		<PackageReference Include="PodNet.Analyzers.Core" Version="1.0.13" PrivateAssets="all" />
+		<PackageReference Include="PodNet.NuGet.Core" Version="1.0.4" PrivateAssets="all" />
 
 		<ProjectReference Include="..\EnumValues.Core\PodNet.EnumValues.Core.csproj" PrivateAssets="all" />
 
-		<None Include="..\..\images\icon.png" Pack="true" PackagePath="" />
-		<None Include="..\..\README.md" Pack="true" PackagePath="" />
+		<TfmSpecificPackageFile Include="$(OutputPath)PodNet.EnumValues.Core.dll" PackagePath="lib/netstandard2.0" />
+		<TfmSpecificPackageFile Include="$(OutputPath)PodNet.EnumValues.Core.pdb" PackagePath="lib/netstandard2.0" />
 	</ItemGroup>
-
-	<Target Name="_AddAnalyzersToOutput">
-		<ItemGroup>
-			<TfmSpecificPackageFile Include="$(OutputPath)$(AssemblyName).dll" PackagePath="analyzers/dotnet/cs" />
-			<TfmSpecificPackageFile Include="$(OutputPath)PodNet.EnumValues.Core.dll" PackagePath="analyzers/dotnet/cs" />
-			<TfmSpecificPackageFile Include="$(OutputPath)PodNet.EnumValues.Core.dll" PackagePath="lib/netstandard2.0" />
-		</ItemGroup>
-	</Target>
 
 </Project>

@@ -3,8 +3,8 @@ using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using PodNet.Analyzers.CodeAnalysis;
 using PodNet.EnumValues.Generator;
-using PodNet.EnumValues.Text;
 using System.Collections.Immutable;
 using System.Composition;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
@@ -42,7 +42,7 @@ public sealed class MissingEnumValueCodeFix : CodeFixProvider
                 cancellationToken.ThrowIfCancellationRequested();
 
                 var newAttributeList = AttributeList(SingletonSeparatedList(
-                    Attribute(IdentifierName(CodeText.TrimAttributeName(attribute)),
+                    Attribute(IdentifierName(TextProcessing.TrimAttributeSuffix(attribute)),
                         AttributeArgumentList(SingletonSeparatedList(AttributeArgument(
                             LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(enumMemberDeclaration.Identifier.Text))))))));
 

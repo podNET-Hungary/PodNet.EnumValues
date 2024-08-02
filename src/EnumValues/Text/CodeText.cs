@@ -2,11 +2,6 @@
 
 internal static class CodeText
 {
-    public static string TrimAttributeName(string attributeName)
-        => attributeName.EndsWith("Attribute")
-            ? attributeName[..^"Attribute".Length]
-            : attributeName;
-
     public static string AlterCasing(string identifier, MissingValueHandling missingValueHandling)
     {
         if (missingValueHandling is not MissingValueHandling.PascalCasing and not MissingValueHandling.CamelCasing and not MissingValueHandling.KebabCasing and not MissingValueHandling.SnakeCasing)

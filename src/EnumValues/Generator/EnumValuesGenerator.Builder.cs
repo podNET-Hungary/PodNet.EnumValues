@@ -108,7 +108,7 @@ public sealed class ExtensionCodeBuilder(ExtensionToGenerate extension, Cancella
                 ///
                 /// {{$"[({@enum.UnderlyingType}){(extension.IsFlags ? "&lt;flag&gt;" : "")}]".PadLeft(maxIdentifierLength + maxConstantValueLength + 5)}} => {{extension.UndefinedValueHandling switch
         {
-            UndefinedValueHandling.RawValueToString => $"$\"{{({@enum.UnderlyingType})}}\"",
+            UndefinedValueHandling.RawValueToString => $"({@enum.UnderlyingType}).ToString()",
             UndefinedValueHandling.EmptyString => "\"\"",
             UndefinedValueHandling.ThrowMissingValueException => $"💥 {nameof(MissingEnumValueException)} 💥",
             _ => throw new InvalidOperationException($"Invalid {nameof(UndefinedValueHandling)} value: {extension.UndefinedValueHandling}")
@@ -181,7 +181,7 @@ public sealed class ExtensionCodeBuilder(ExtensionToGenerate extension, Cancella
         sourceBuilder.AppendLine($$"""
                             _ => {{extension.UndefinedValueHandling switch
         {
-            UndefinedValueHandling.RawValueToString => $"$\"{{(({@enum.UnderlyingType})value)}}\"",
+            UndefinedValueHandling.RawValueToString => $"(({@enum.UnderlyingType})value).ToString()",
             UndefinedValueHandling.EmptyString => "\"\"",
             UndefinedValueHandling.ThrowMissingValueException => $"throw new {nameof(MissingEnumValueException)}(typeof({@enum.Identifier}), value)",
             _ => throw new InvalidOperationException($"Invalid {nameof(UndefinedValueHandling)} value: {extension.UndefinedValueHandling}")
@@ -219,6 +219,7 @@ public sealed class ExtensionCodeBuilder(ExtensionToGenerate extension, Cancella
         }}}
                         var flags = new System.Text.StringBuilder();
                         var hasSeparator = !string.IsNullOrEmpty(separator);
+                        var addedSeparator = false;
                         for ({{@enum.UnderlyingType}} i = 1; i <= iValue; i *= 2)
                         {
                             if ((i & iValue) != 0)
@@ -234,11 +235,14 @@ public sealed class ExtensionCodeBuilder(ExtensionToGenerate extension, Cancella
             _ => throw new InvalidOperationException($"Invalid {nameof(UndefinedValueHandling)} value: {extension.UndefinedValueHandling}")
         }}}
                                 if (hasSeparator)
+                                {
                                     flags.Append(separator);
+                                    addedSeparator = true;
+                                }
                             }
                         }
-                        if (hasSeparator && flags.Length > 1)
-                            flags.Remove(flags.Length - 1, 1);
+                        if (addedSeparator)
+                            return flags.ToString(0, flags.Length - separator!.Length);
                         return flags.ToString();
 
                         static string? GetSingleFlagValueOrNull({{@enum.Identifier}} value) => value switch

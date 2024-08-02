@@ -13,7 +13,7 @@
 /// <list type="number">
 /// <item>Decorate the enum type with <see cref="ValuesAttribute{TValue}"/>, and supply <see cref="ValueAttribute"/> or one of its descendants to its type parameter.</item>
 /// <item>Use the type parameter supplied to <see cref="ValuesAttribute{TValue}"/> in step 1. to decorate the individual enum <b>values</b>.</item>
-/// <item>Extension methods should automatically be generatedon the fly, as defined by the rules of <see cref="ValuesAttribute{TValue}"/> in step 1.</item>
+/// <item>Extension methods should automatically be generated on the fly, as defined by the rules of <see cref="ValuesAttribute{TValue}"/> in step 1.</item>
 /// </list>
 /// </p>
 /// </summary>
