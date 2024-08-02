@@ -6,6 +6,11 @@
 		<Description>Generate fast constant string lookups for enum values. An efficient, easy-to-use C# source generator.</Description>
 		<PackageTags>EnumValues, PodNet, generator, enum, enums, lookups, flags, binary, bit, bits, awesome</PackageTags>
 		<PodNetIncludeLibPlaceholder>false</PodNetIncludeLibPlaceholder>
+		<!-- 
+			It's important to disable this as a development dependency, otherwise the "compile" assets, 
+			which include the PodNet.EnumValues.Core.dll will be ignored upon installing via CLI or VS.
+		-->
+		<DevelopmentDependency>false</DevelopmentDependency>
 	</PropertyGroup>
 
 	<ItemGroup>
