@@ -382,6 +382,25 @@ This project aims to make it clean to define lookups for enum values. There are 
 - If you reuse generated partial classes (override the `Namespace` and/or `ClassName` pairs to match in multiple declarations) for whatever reason, you have to match the provided `Accessibility` values, as it is not possible to locate all partial declarations inside the generator. You'll get a compiler error `CS0262: Partial declarations of '{YourExtensionClass}' have conflicting accessibility modifiers` if this is the case.
 - The value can only be a `string` value at the moment. Integral values are inherently supported by the enum types themselves (although not multiple values), and I saw no other viable scenarios that suggest other values (as `Attribute`s, these are constrained to a few constant types anyways) should be reasonable. Although it would be possible to supply another variant of the generator that generates the values using inversion of control (you could supply your custom class that takes the given enum type as a type parameter), it's not immediately obvious what purpose this would serve. If you want a similar feature, feel free to jump into the [[Discussions](https://github.com/podNET-Hungary/PodNet.EnumValues/discussions)].
 
+## Troubleshooting
+
+### My project cannot see the `[ValuesAttribute]` type, what's up?
+
+Check if your `PackageReference` is correct in the `csproj` file. If you set the `PackageReference` manually to exclude (or don't include) the `compile` asset, the project you want to use the generator in won't see the assembly containing the attributes and enumerations you need to use the generator. It just won't fire up, because it's looking for the attribute on enum types.
+
+The following are CORRECT references after installation:
+```xml
+<PackageReference Include="PodNet.EnumValues" Version="1.0.1" 
+    PrivateAssets="all" />
+<!-- This 👆 adds the generator and diagnostic analyzers, including the compile-time reference as a private dependency. It means you can use the generator from the consuming project, but not from any project referencing your project. This is recommended for building NuGet packages others will consume. -->
+
+<PackageReference Include="PodNet.EnumValues" Version="1.0.1" />
+<!-- NOT setting it to PrivateAssets="all" will allow the consumers of your project to transitively access the functionality of the generator. This means that if you install the package in project A, then reference A from B, both of your projects will be able to use the generator and see the compile-time attributes. This is recommended for building apps. -->
+```
+
+> [!NOTE]
+> In version 1.0.0, the NuGet package was set up as a [`DevelopmentDependency`](https://github.com/NuGet/Home/wiki/DevelopmentDependency-support-for-PackageReference) (as it should for analyzer packages), but this resulted in the compile-time assemblies not being correctly referenced. If you managed to somehow install 1.0.0 of the package, please upgrade to 1.0.1 to see the required attributes.
+
 ## Contributing and Support
 
 This project is intended to be widely usable, but no warranties are provided. If you want to contact us, feel free to do so in the repo's [[Discussions](https://github.com/podNET-Hungary/PodNet.EnumValues/discussions)], at our website at [podnet.hu](https://podnet.hu), or find us anywhere from [LinkedIn](https://www.linkedin.com/company/podnet-hungary/) and [Patreon](https://www.patreon.com/podNETHungary) to [Meetup](https://www.meetup.com/budapest-net-meetup/), [YouTube](https://www.youtube.com/@podNET) or [X](https://twitter.com/podNET_Hungary).
