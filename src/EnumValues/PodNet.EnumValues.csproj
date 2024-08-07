@@ -16,8 +16,8 @@
 	<ItemGroup>
 		<InternalsVisibleTo Include="PodNet.EnumValues.Tests" />
 		
-		<PackageReference Include="PodNet.Analyzers.Core" Version="1.0.13" PrivateAssets="all" />
-		<PackageReference Include="PodNet.NuGet.Core" Version="1.0.4" PrivateAssets="all" />
+		<PackageReference Include="PodNet.Analyzers.Core" Version="1.0.14" PrivateAssets="all" />
+		<PackageReference Include="PodNet.NuGet.Core" Version="1.0.5" PrivateAssets="all" />
 
 		<ProjectReference Include="..\EnumValues.Core\PodNet.EnumValues.Core.csproj" PrivateAssets="all" />
 
