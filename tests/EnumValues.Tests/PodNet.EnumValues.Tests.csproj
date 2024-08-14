@@ -14,7 +14,7 @@
 			the package in user code.
 		-->
 		<PackageReference Include="PodNet.Analyzers.Core" Version="1.0.14" />
-		<PackageReference Include="PodNet.Analyzers.Testing" Version="1.2.1" />
+		<PackageReference Include="PodNet.Analyzers.Testing" Version="1.2.2" />
 		<PackageReference Include="PodNet.EmbeddedTexts" Version="1.2.1" />
 		
 		<Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
