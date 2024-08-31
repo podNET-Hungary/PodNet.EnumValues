@@ -18,5 +18,9 @@ public enum MissingValueHandling
     /// <summary>The raw constant value itself is returned by calling <see cref="object.ToString()"/> on the value.</summary>
     RawValueToString,
     /// <summary>Returns an empty string. This is useful if you want to implement a wrapper around the generated method and handle this case in user code.</summary>
-    EmptyString
+    EmptyString,
+    /// <summary>Returns the enum name lowercased (culture invariant).</summary>
+    ToLowerInvariant,
+    /// <summary>Returns the enum name uppercased (culture invariant).</summary>
+    ToUpperInvariant
 }

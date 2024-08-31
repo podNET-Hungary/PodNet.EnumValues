@@ -56,6 +56,8 @@ public sealed record EnumValueCase(
                 {
                     MissingValueHandling.ThrowMissingValueException => null,
                     MissingValueHandling.ToString => symbol.Name,
+                    MissingValueHandling.ToLowerInvariant => symbol.Name.ToLowerInvariant(),
+                    MissingValueHandling.ToUpperInvariant => symbol.Name.ToUpperInvariant(),
                     MissingValueHandling.RawValueToString => symbol.ConstantValue?.ToString() ?? "",
                     MissingValueHandling.EmptyString => "",
                     _ => CodeText.AlterCasing(symbol.Name, missingValueHandling)

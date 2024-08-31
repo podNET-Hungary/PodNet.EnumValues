@@ -265,6 +265,8 @@ Defines the behavior that is executed when a defined enum value has no associate
 |`SnakeCasing`|Returns the enum name as a `snake_cased_string`. Assumes the name is in PascalCase.|
 |`RawValueToString`|The raw constant value itself is returned by calling `object.ToString()` on the value.|
 |`EmptyString`|Returns an empty string. This is useful if you want to implement a wrapper around the generated method and handle this case in user code.|
+|`ToLowerInvariant`|Returns the enum name lowercased (culture invariant).|
+|`ToUpperInvariant`|Returns the enum name uppercased (culture invariant).|
 
 </details>
 
