@@ -49,11 +49,13 @@ Did you ever need to get down to the nitty-gritty of trying to extract a `Displa
     ```
 1. As the magic happens in the background as you type, an extension method will get generated — by default, in the same namespace as the enum type, so you don't need to add any additional `using`s —, which you can simply call using `enum.GetValue()`:
 <br>
+
 ![Screenshot from Visual Studio showing generated IntelliSense documentation and usage in action](./images/demo-extension-doc-comments.png)
 <br>
   There is interactive documentation generated for the methods as well. Parametrization of `[Values]` and changing the enum type's shape also changes the generated documentation accordingly (as well as the generated code, obviously).
 1. You also get an analyzer and code fix if you miss a value:
   <br>
+  
   ![Screenshot from Visual Studio showing code fix in action](./images/demo-missing-member-code-fix.png)
   <br>
   You can also configure this warning (or any other generated warnings) to appear as an error, or silence them individually or globally (although the latter is not recommended).
@@ -74,6 +76,7 @@ Did you ever need to get down to the nitty-gritty of trying to extract a `Displa
 
 You can also inspect (but not modify) the generated code by navigating to `{Project}/Dependencies/Analyzers/PodNet.EnumValues` in Visual Studio:
 <br>
+
 ![Screenshot from Visual Studio showing the generated code](./images/demo-generated-code.png)
 <br>
 
