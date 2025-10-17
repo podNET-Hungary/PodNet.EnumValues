@@ -1,4 +1,4 @@
-﻿[Values<ValueAttribute>]
+[Values<ValueAttribute>]
 public enum Sentiment
 {
     [Value("Unknown")]

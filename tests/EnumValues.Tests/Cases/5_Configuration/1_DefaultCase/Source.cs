@@ -12,7 +12,8 @@ public class EmojiAttribute(string value) : ValueAttribute(value);
 )]
 public enum Sentiment
 {
-    [Emoji("😄")]  Happy,
+    [Emoji("😄")] Happy,
     [Emoji("🙄")] Neutral,
-    [Emoji("😔")]    Sad
+    [Emoji("😔")] Sad,
+    Empty // 👈 No attribute, will map to ""
 }

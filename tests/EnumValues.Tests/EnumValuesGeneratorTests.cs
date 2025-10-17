@@ -18,10 +18,11 @@ public static class EnumValuesGeneratorTests
     }
 
     [TestClass] public class _1_DefaultHappyPath : EnumValuesTestCase<Cases._1_DefaultHappyPath>;
-    [TestClass] public class _2_DefaultUndefinedValue() : EnumValuesTestCase<Cases._2_DefaultUndefinedValue>.WithCodeFix<MissingEnumValueCodeFix>([EnumValuesGenerator.MissingEnumValueDescriptor]);
+    [TestClass] public class _2_DefaultUndefinedValue() : EnumValuesTestCase<Cases._2_DefaultUndefinedValue>.WithCodeFix<MissingEnumValueCodeFix>([EnumValuesGenerator.MissingEnumValueDescriptor], true);
     [TestClass] public class _3_UserSuppliedDescendantAttribute : EnumValuesTestCase<Cases._3_UserSuppliedDescendantAttribute>;
     [TestClass] public class _4_MultipleLookups : EnumValuesTestCase<Cases._4_MultipleLookups>;
     [TestClass] public class _5_Configuration_1_DefaultCase : EnumValuesTestCase<Cases._5_Configuration._1_DefaultCase>;
+    [TestClass] public class _5_Configuration_2_SnakeCasing : EnumValuesTestCase<Cases._5_Configuration._2_SnakeCasing>;
     [TestClass] public class _6_Flags_1_DefaultCase : EnumValuesTestCase<Cases._6_Flags._1_DefaultCase>;
     [TestClass] public class _6_Flags_2_FlagsAttribute() : EnumValuesTestCase<Cases._6_Flags._2_FlagsAttribute>(ignoreSources: true);
     [TestClass] public class _6_Flags_3_Property() : EnumValuesTestCase<Cases._6_Flags._3_Property>(ignoreSources: true);

@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
+		<PolySharpExcludeTypeForwardedToDeclarations>true</PolySharpExcludeTypeForwardedToDeclarations>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -13,9 +14,9 @@
 			The package reference in EnumValues has to be kept private so that consumers won't be referencing 
 			the package in user code.
 		-->
-		<PackageReference Include="PodNet.Analyzers.Core" Version="1.0.14" />
-		<PackageReference Include="PodNet.Analyzers.Testing" Version="1.2.2" />
-		<PackageReference Include="PodNet.EmbeddedTexts" Version="1.2.1" />
+		<PackageReference Include="PodNet.Analyzers.Core" Version="1.0.17" />
+		<PackageReference Include="PodNet.Analyzers.Testing" Version="1.5.3" />
+		<PackageReference Include="PodNet.EmbeddedTexts" Version="1.2.3" />
 		
 		<Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
 

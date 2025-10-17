@@ -13,6 +13,7 @@ internal static partial class EmojiExtensions
     ///   [Happy] = 0 => "😄"
     /// [Neutral] = 1 => "🙄"
     ///     [Sad] = 2 => "😔"
+    ///   [Empty] = 3 => ""
     ///
     ///       [(int)] => 💥 MissingEnumValueException 💥
     /// </code>
@@ -27,6 +28,7 @@ internal static partial class EmojiExtensions
             Sentiment.Happy => "😄",
             Sentiment.Neutral => "🙄",
             Sentiment.Sad => "😔",
+            Sentiment.Empty => "",
             _ => throw new MissingEnumValueException(typeof(Sentiment), value)
         };
 }

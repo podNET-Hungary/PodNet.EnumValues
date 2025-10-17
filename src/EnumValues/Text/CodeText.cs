@@ -19,17 +19,19 @@ internal static class CodeText
         };
         s[0] = missingValueHandling is MissingValueHandling.PascalCasing ? char.ToUpperInvariant(identifier[0]) : char.ToLowerInvariant(identifier[0]);
         var si = 0;
-        for (var i = 1; i < identifier.Length; (i, si) = (i + 1, si + 1))
+        for (var i = 1; i < identifier.Length; i++)
         {
             var current = identifier[i];
+
             if (!char.IsUpper(current) || missingValueHandling is MissingValueHandling.CamelCasing or MissingValueHandling.PascalCasing)
-                s[si] = current;
+                s[++si] = current;
             else
             {
-                s[si] = char.ToLowerInvariant(current);
-                s[++si] = div;
+                if (!char.IsUpper(identifier[i - 1]) || (identifier.Length > i && !char.IsUpper(identifier[i + 1])))
+                    s[++si] = div;
+                s[++si] = char.ToLowerInvariant(current);
             }
         }
-        return new(s[..si].ToArray());
+        return new(s[..(si + 1)].ToArray());
     }
 }
